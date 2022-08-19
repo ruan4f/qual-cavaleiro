@@ -6,6 +6,12 @@ export default function Home() {
   const [name, setName] = useState('');
   const [born, setBorn] = useState('');
   const [goldKnight, setGoldKnight] = useState('');
+  let auxGoldKnight = '';
+
+  function getGoldKnight(bornDay: number, bornMonth: number, firstDay: number, firstMonth: number, secondDay: number, secondMonth: number, sign: string, signNew: string) {
+    if (signNew) return signNew;
+    return ((bornDay >= firstDay && bornMonth == firstMonth) || (bornDay <= secondDay && bornMonth == secondMonth)) ? sign : '';
+  }
 
   function handleGenerateItem() {
     const date = new Date(`${born}T00:00`);
@@ -26,55 +32,20 @@ export default function Home() {
     Aquário: de 21 de janeiro a 18 de fevereiro;
     Peixes: de 19 de fevereiro a 20 de março.
     */
-    setGoldKnight('');
+    auxGoldKnight = getGoldKnight(day, month, 21, 3, 20, 4, 'Áries', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 21, 4, 20, 5, 'Touro', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 21, 5, 20, 6, 'Gêmeos', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 21, 6, 22, 7, 'Câncer', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 23, 7, 22, 8, 'Leão', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 23, 8, 22, 9, 'Virgem', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 23, 9, 22, 10, 'Libra', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 23, 10, 21, 11, 'Escorpião', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 22, 11, 21, 12, 'Sagitário', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 22, 12, 20, 1, 'Capricórnio', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 21, 1, 18, 2, 'Aquário', auxGoldKnight);
+    auxGoldKnight = getGoldKnight(day, month, 19, 2, 20, 3, 'Peixes', auxGoldKnight);
 
-    if ((day >= 21 && month == 3) || (day <= 20 && month == 4)) {
-      setGoldKnight('Áries');
-    }
-
-    if ((day >= 21 && month == 4) || (day <= 20 && month == 5)) {
-      setGoldKnight('Touro');
-    }
-
-    if ((day >= 21 && month == 5) || (day <= 20 && month == 6)) {
-      setGoldKnight('Gêmeos');
-    }
-
-    if ((day >= 21 && month == 6) || (day <= 22 && month == 7)) {
-      setGoldKnight('Câncer');
-    }
-
-    if ((day >= 23 && month == 7) || (day <= 22 && month == 8)) {
-      setGoldKnight('Leão');
-    }
-
-    if ((day >= 23 && month == 8) || (day <= 22 && month == 9)) {
-      setGoldKnight('Virgem');
-    }
-
-    if ((day >= 23 && month == 9) || (day <= 22 && month == 10)) {
-      setGoldKnight('Libra');
-    }
-
-    if ((day >= 23 && month == 10) || (day <= 21 && month == 11)) {
-      setGoldKnight('Escorpião');
-    }
-
-    if ((day >= 22 && month == 11) || (day <= 21 && month == 12)) {
-      setGoldKnight('Sagitário');
-    }
-
-    if ((day >= 22 && month == 12) || (day <= 20 && month == 1)) {
-      setGoldKnight('Capricórnio');
-    }
-
-    if ((day >= 21 && month == 1) || (day <= 18 && month == 2)) {
-      setGoldKnight('Aquário');
-    }
-
-    if ((day >= 19 && month == 2) || (day <= 20 && month == 3)) {
-      setGoldKnight('Peixes');
-    }
+    setGoldKnight(auxGoldKnight);
   }
 
   return (
