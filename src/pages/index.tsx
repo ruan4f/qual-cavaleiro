@@ -8,7 +8,7 @@ export default function Home() {
   const [goldKnight, setGoldKnight] = useState('');
   let auxGoldKnight = '';
 
-  function getGoldKnight(bornDay: number, bornMonth: number, firstDay: number, firstMonth: number, secondDay: number, secondMonth: number, sign: string, signNew: string) {
+  function getGoldKnight(bornDay: number, bornMonth: number, firstDay: number, firstMonth: number, secondDay: number, secondMonth: number, sign: string, signNew: string): string {
     if (signNew) return signNew;
     return ((bornDay >= firstDay && bornMonth == firstMonth) || (bornDay <= secondDay && bornMonth == secondMonth)) ? sign : '';
   }
